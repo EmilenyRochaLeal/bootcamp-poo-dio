@@ -6,6 +6,29 @@ public class Dev {
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+    private List<Artigo> artigos;
+
+    public Dev(String nome) {
+        this.nome = nome;
+        this.artigos = new ArrayList<>(); // Inicializando a lista de artigos
+    }
+
+    public void publicarArtigo(String titulo, String tecnologias, String texto){
+        Artigo artigo = new Artigo(titulo, tecnologias, texto);
+        if (artigo != null){
+
+            artigos.add(artigo);
+            artigo.publicar();
+        }else{
+            System.out.println("Artigo é nulo, não pode ser publicado.");
+        }
+    }
+    public void verArtigosPublicados(){
+        for (Artigo meuArtigo : artigos){
+            System.out.println(meuArtigo.toString());
+        }
+    }
+
 
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
